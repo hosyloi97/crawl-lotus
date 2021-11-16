@@ -32,7 +32,7 @@ def get_all_followers(_target_user_id):
     _dev = 0
     util.log_method("get_all_followers", "scanning fans for {}".format(_target_user_id))
     while _still_loop:
-        _followers = get_followers(_target_user_id, _no_page, _dev, 2)
+        _followers = get_followers(_target_user_id, _no_page, _dev)
         if len(_followers) > 0:
             _list_followers.extend(_followers)
             _no_page += 1

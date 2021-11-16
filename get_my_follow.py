@@ -12,7 +12,7 @@ dev = 0
 user_ids_scanned = []
 result = []
 need_scan_ids = []
-depth = 5
+depth = 6
 
 follower_file_name = 'follow_relationship.csv'
 follow_relationship_column = ['index', 'user_id', 'follower_id']
