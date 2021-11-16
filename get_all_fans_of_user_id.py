@@ -13,7 +13,12 @@ def get_followers(_target_user_id, _no_page, _dev, _stop_loop_index=0):
     query = {'user_id': config.my_id, 'partner_id': _target_user_id, 'no_page': _no_page, 'dev': _dev}
     list_followers = []
     response = util.call_api_and_auto_update_token(url_constant.get_all_fans, query)
-    _followers = response.json()['data']
+    _followers = []
+    try:
+        _followers.extend(response.json()['data'])
+    except:
+        util.log_method("get_followers", "ERROR at id: {}".format(_target_user_id))
+        return []
     for _follower_info in _followers:
         list_followers.append(user_info.convert_user_info(_follower_info, _target_user_id))
     return list_followers
@@ -27,7 +32,7 @@ def get_all_followers(_target_user_id):
     _dev = 0
     util.log_method("get_all_followers", "scanning fans for {}".format(_target_user_id))
     while _still_loop:
-        _followers = get_followers(_target_user_id, _no_page, _dev, 3)
+        _followers = get_followers(_target_user_id, _no_page, _dev, 2)
         if len(_followers) > 0:
             _list_followers.extend(_followers)
             _no_page += 1

@@ -1,10 +1,10 @@
 import requests
-import config as config
 import datetime
 
 
-def call_api_and_auto_update_token(_url, _params, _headers=config.headers):
-    _response = requests.get(url=_url, params=_params, headers=_headers)
+def call_api_and_auto_update_token(_url, _params):
+    import config as config
+    _response = requests.get(url=_url, params=_params, headers=config.headers)
     if _response.__getattribute__('status_code') != 200:
         config.update_variable_value(self=config)
         _response = requests.get(url=_url, params=_params, headers=config.headers)
