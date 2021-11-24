@@ -2,7 +2,7 @@ import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
 
-data = pd.read_csv('follow_relationship.csv', nrows=500)
+data = pd.read_csv('csv/follow_relationship.csv', nrows=500)
 df = pd.DataFrame({'from': data['user_id'], 'to': data['follower_id']})
 
 # Build your graph. Note that we use the DiGraph function to create the graph!

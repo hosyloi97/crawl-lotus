@@ -7,3 +7,4 @@ get_all_activities = 'https://webpub.lotuscdn.vn/api/webkinghub/kinghub-user-act
 get_detail_user_info = 'https://webpub.lotuscdn.vn/api/webkinghub/kinghub-user/get-user-profile'
 get_token = 'https://webpub.lotuscdn.vn/api/social/token'
 get_new_token = 'https://lotus.vn/w/a/gtk'
+get_reactions_of_post = 'https://lotus.vn/w/api/ProfileToken/get-post-react-detail'

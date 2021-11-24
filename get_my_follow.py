@@ -1,4 +1,5 @@
 import csv
+import datetime as dt
 
 import config as config
 import get_all_fans_of_user_id
@@ -14,9 +15,9 @@ result = []
 need_scan_ids = []
 depth = 10
 
-follower_file_name = 'follow_relationship.csv'
+follower_file_name = 'csv/follow_relationship.csv'
 follow_relationship_column = ['index', 'user_id', 'follower_id']
-user_info_file_name = 'user_info.csv'
+user_info_file_name = 'csv/user_info.csv'
 user_info_column = ['index', 'user_id', 'username', 'full_name', 'total_follower']
 
 
@@ -69,7 +70,8 @@ def crawl_data():
         depth_index += 1
         print()
         print()
-        print("<<<===================== Scanned with depth = {} success ==========================>>>".format(depth_index))
+        print("<<<===================== Scanned with depth = {} success ==========================>>>".format(
+            depth_index))
         print()
         print()
     print("===================== scanned {} actors ==========================".format(len(user_ids_scanned)))
@@ -101,8 +103,6 @@ def write_data():
     _user_f.close()
     util.log_method_complete("write_data", "", 1)
 
-
-import datetime as dt
 
 start_time = dt.datetime.now()
 crawl_data()
