@@ -3,9 +3,6 @@ import url_constant
 import emotion
 import datetime as dt
 
-# init quantity loop
-max_loop = 8
-
 
 def get_posts_by_paging(_target_user_id, _page, _max_loop=0, _numnews=50, _reload=1, _post_id=0, _type=0):
     if 0 < _max_loop < _page:
@@ -16,7 +13,7 @@ def get_posts_by_paging(_target_user_id, _page, _max_loop=0, _numnews=50, _reloa
     return response.json()['result']['data']
 
 
-def get_all_posts_from_user_id(_target_user_id):
+def get_all_posts_from_user_id(_target_user_id, _max_loop):
     _loop_index = 1
     _still_loop = True
     _list_posts = []
@@ -24,7 +21,7 @@ def get_all_posts_from_user_id(_target_user_id):
     _page = 1
     util.log_method("get_all_posts_from_user_id", "scanning posts for {}".format(_target_user_id))
     while _still_loop:
-        _posts = get_posts_by_paging(_target_user_id, _page, max_loop)
+        _posts = get_posts_by_paging(_target_user_id, _page, _max_loop)
         if len(_posts) > 0:
             _list_original_posts.extend(_posts)
             _page += 1
@@ -40,8 +37,8 @@ def get_all_posts_from_user_id(_target_user_id):
     return _list_posts
 
 
-def get_quantity_react_of_fans_to_user(_target_user_id):
-    _list_posts = get_all_posts_from_user_id(_target_user_id)
+def get_quantity_react_of_fans_to_user(_target_user_id, _max_loop=1):
+    _list_posts = get_all_posts_from_user_id(_target_user_id, _max_loop)
     _result = {}
     _users = []
     if len(_list_posts) > 0:
@@ -59,9 +56,3 @@ class Post:
         self.id = _id
         self.media_id = _media_id
         self.publish_date = _publish_date
-
-
-start_time = dt.datetime.now()
-res = get_quantity_react_of_fans_to_user(18241256567433054)
-end_time = dt.datetime.now()
-print("Running start from {} to {}".format(start_time, end_time))

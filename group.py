@@ -8,10 +8,11 @@ def get_members_of_group_by_paging(_group_id, _type=1):
     return _response.json()['data']['members']
 
 
-def get_all_members_of_group(_group_id):
+def get_all_members_of_group(_group_id, _list=None):
+    if _list is None:
+        _list = []
     _members = get_members_of_group_by_paging(_group_id)
-    _list_members = []
     if len(_members) > 0:
         for _member in _members:
-            _list_members.append(_member['member_id'])
-    return _list_members
+            _list.append(_member['member_id'])
+    return _list
