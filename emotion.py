@@ -4,7 +4,7 @@ import util
 import json
 
 # init value
-max_loop = 5
+max_loop = 1
 
 
 def get_list_user_react_post_with_paging(_post_id, _offset, _max_loop=0, _length=200, _type_react=0):
@@ -38,8 +38,3 @@ def get_all_users_react(_post_id):
                              "Scanning list reacted user with post id: {} successfully with {} users".format(
                                  _post_id, len(_list_user_reactions)))
     return _list_user_reactions
-
-# class Emotion:
-#     def __init__(self, _user_id, _post_id):
-#         self.user_id = _user_id
-#         self.post_id = _post_id

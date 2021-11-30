@@ -4,37 +4,36 @@ import emotion
 import datetime as dt
 
 # init quantity loop
-max_loop = 10
+max_loop = 8
 
 
 def get_posts_by_paging(_target_user_id, _page, _max_loop=0, _numnews=50, _reload=1, _post_id=0, _type=0):
-    _list_posts = []
     if 0 < _max_loop < _page:
-        return _list_posts
+        return []
     params = {'numnews': _numnews, 'reload': _reload, 'page': _page, 'guid': _target_user_id, 'postid': _post_id,
               'type': _type}
     response = util.call_api_and_auto_update_token(url_constant.get_all_posts, params)
-    _posts = response.json()['result']['data']
-    if len(_posts) > 0:
-        for _post in _posts:
-            _list_posts.append(Post(_post['id'], _post['media_id'], _post['publish_date']))
-    return _list_posts
+    return response.json()['result']['data']
 
 
 def get_all_posts_from_user_id(_target_user_id):
     _loop_index = 1
     _still_loop = True
     _list_posts = []
+    _list_original_posts = []
     _page = 1
     util.log_method("get_all_posts_from_user_id", "scanning posts for {}".format(_target_user_id))
     while _still_loop:
         _posts = get_posts_by_paging(_target_user_id, _page, max_loop)
         if len(_posts) > 0:
-            _list_posts.extend(_posts)
+            _list_original_posts.extend(_posts)
             _page += 1
             _loop_index += 1
         else:
             _still_loop = False
+    if len(_list_original_posts) > 0:
+        for _post in _list_original_posts:
+            _list_posts.append(Post(_post['id'], _post['media_id'], _post['publish_date']))
     util.log_method_complete("get_all_posts_from_user_id",
                              "Scanning posts for {} successfully with {} posts".format(_target_user_id,
                                                                                        len(_list_posts)))

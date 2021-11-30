@@ -32,6 +32,6 @@ def log_method_complete(_method_name, _params="", _number_enter=0):
 
 def get_log_message(_method_name, _params=""):
     if _params != "":
-        return " {} with {} ".format(_method_name, _params)
+        return " [{}] with {} ".format(_method_name, _params)
     else:
-        return _method_name
+        return "[{}] ".format(_method_name)
