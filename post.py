@@ -1,7 +1,6 @@
-import util
-import url_constant
 import emotion
-import datetime as dt
+import url_constant
+import util
 
 
 def get_posts_by_paging(_target_user_id, _page, _max_loop=0, _numnews=50, _reload=1, _post_id=0, _type=0):
@@ -9,8 +8,11 @@ def get_posts_by_paging(_target_user_id, _page, _max_loop=0, _numnews=50, _reloa
         return []
     params = {'numnews': _numnews, 'reload': _reload, 'page': _page, 'guid': _target_user_id, 'postid': _post_id,
               'type': _type}
-    response = util.call_api_and_auto_update_token(url_constant.get_all_posts, params)
-    return response.json()['result']['data']
+    try:
+        response = util.call_api_and_auto_update_token(url_constant.get_all_posts, params)
+        return response.json()['result']['data']
+    except:
+        return []
 
 
 def get_all_posts_from_user_id(_target_user_id, _max_loop):

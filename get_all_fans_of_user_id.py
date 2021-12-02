@@ -44,7 +44,7 @@ def get_all_followers(_target_user_id, _depth=1):
         else:
             _still_loop = False
     if len(_list_term) > 0:
-        _map = post.get_quantity_react_of_fans_to_user(_target_user_id)
+        _map = post.get_quantity_react_of_fans_to_user(_target_user_id, 2)
         for _follower in _list_term:
             _follower_id = _follower['user_id']
             _list_followers.append(

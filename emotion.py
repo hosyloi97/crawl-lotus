@@ -5,12 +5,15 @@ import json
 
 
 def get_list_user_react_post_with_paging(_post_id, _offset, _max_loop, _length=200, _type_react=0):
-    _header = {'session-id': config.session_id, 'cookie': config.cookie}
+    _header = {'session-id': config.session_id, 'cookie': config.cookie, 'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'}
     _params = {'postId': _post_id, 'type_react': _type_react, 'length': _length, 'offset': _offset}
     if 0 < _max_loop < _offset:
         return []
-    _response = util.call_api_and_auto_update_token(url_constant.get_reactions_of_post, _params, _header)
-    return json.loads(_response.json())['data']['lst_user']
+    try:
+        _response = util.call_api_and_auto_update_token(url_constant.get_reactions_of_post, _params, _header)
+        return json.loads(_response.json())['data']['lst_user']
+    except:
+        return []
 
 
 def get_all_users_react(_post_id, _max_loop=1):

@@ -11,7 +11,7 @@ cookie = '__uif=__uid%3A8965020032883629812; __RC=4; _kh_d_guid=74be05edbc125634
 my_id = 88747935925278542
 
 # init some variable
-headers = {'authorization': authorization, 'session-id': session_id}
+headers = {'authorization': authorization, 'session-id': session_id, 'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'}
 token_variable = '_kh_t_e_a_s'
 
 

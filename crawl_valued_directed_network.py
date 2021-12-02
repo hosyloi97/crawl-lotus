@@ -5,7 +5,6 @@ import get_all_fans_of_user_id
 import group
 import user_info
 import util
-import post
 
 # init value of params
 no_page = 1
@@ -13,7 +12,7 @@ dev = 0
 user_ids_scanned = []
 result = []
 need_scan_ids = []
-depth = 1
+depth = 2
 
 follower_file_name = 'csv/follow_relationship.csv'
 follow_relationship_column = ['index', 'user_id', 'follower_id', 'weight']
@@ -36,8 +35,7 @@ def scan_followers_by_user_id(_user_ids_scanned, _need_scan_ids, _depth_index, _
     _need_scan_ids.clear()
     for _user_id_scanning in _need_scan_ids_new:
         if _user_id_scanning not in _user_ids_scanned:
-            _list_fans = get_all_fans_of_user_id.get_all_followers(_user_id_scanning)
-            # _map_user_id_with_reactions = post.get_all_posts_from_user_id(_user_id_scanning)
+            _list_fans = get_all_fans_of_user_id.get_all_followers(_user_id_scanning, 4)
             _user_ids_scanned.append(_user_id_scanning)
             for _fan in _list_fans:
                 _fan.__class__ = user_info.userInfo

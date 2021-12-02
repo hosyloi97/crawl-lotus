@@ -1,9 +1,11 @@
-import requests
 import datetime
+
+import requests
 
 
 def call_api_and_auto_update_token(_url, _params, _headers=None):
     import config as config
+
     _has_headers = _headers is not None
     if not _has_headers:
         _headers = config.headers
