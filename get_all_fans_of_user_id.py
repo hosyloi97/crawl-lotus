@@ -5,7 +5,7 @@ import user_info
 import util
 
 
-# get followers by paging
+# get followers by paging (default max elements = 50/page)
 def get_followers(_target_user_id, _no_page, _dev, _stop_loop_index=0):
     if 0 < _stop_loop_index < _no_page:
         return []

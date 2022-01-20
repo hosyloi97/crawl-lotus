@@ -3,6 +3,7 @@ import url_constant
 import util
 
 
+# default max scan 50 elements / page
 def get_posts_by_paging(_target_user_id, _page, _max_loop=0, _numnews=50, _reload=1, _post_id=0, _type=0):
     if 0 < _max_loop < _page:
         return []

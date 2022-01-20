@@ -1,7 +1,7 @@
 import url_constant
 import util
 
-
+# default get 20 lements
 def get_members_of_group_by_paging(_group_id, _type=1):
     _params = {'group_id': _group_id, 'type': _type}
     _response = util.call_api_and_auto_update_token(url_constant.get_members_of_group, _params)
